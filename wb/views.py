@@ -18,7 +18,10 @@ import json
 from django.shortcuts import get_object_or_404
 
 def index(request):
-	empresa = Empresa.objects.filter(usuario=request.user).last()
+	try:
+		empresa = Empresa.objects.filter(usuario=request.user).last()
+	except TypeError:
+		empresa = None
 	return render(request, 'wb/index.html',{'empresa':empresa})
 
 def nova_empresa(request):
@@ -43,7 +46,10 @@ def nova_empresa(request):
 
 def questionario(request):
 	questoes = Questionario.objects.all()
-	empresa = Empresa.objects.filter(usuario=request.user).last()
+	try:
+		empresa = Empresa.objects.filter(usuario=request.user).last()
+	except TypeError:
+		empresa = None
 	respostas = Resposta.objects.filter(empresa=empresa)
 
 	initial = []
@@ -86,7 +92,10 @@ def questionario(request):
 def respostas(request):
 	questoes = Questionario.objects.all()
 	valorreferencia = ValorReferencia.objects.all()
-	empresa = Empresa.objects.filter(usuario=request.user).last()
+	try:
+		empresa = Empresa.objects.filter(usuario=request.user).last()
+	except TypeError:
+		empresa = None
 	respostas = Resposta.objects.filter(empresa=empresa)
 	targets = TargetGrafico.objects.all()
 	boaspraticas = BoasPraticas.objects.all()
