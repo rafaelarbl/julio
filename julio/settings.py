@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-p^78$@4i=z&vx55t(@_o$_4m21&u5d=ux_7+gd)4(+q*p1xg*1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'http://vps43997.publiccloud.com.br'
+]
 
 
 # Application definition
@@ -130,3 +134,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_ROOT = '/opt/myenv/static/'
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://vps43997.publiccloud.com.br',
+    'http://vps43997.publiccloud.com.br/loginview'
+]
